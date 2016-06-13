@@ -17,7 +17,8 @@ namespace CisLab6
     public partial class Form1 : Form
     {
         Graphics graphics;        
-        bool mouseIsDown = false;        
+        bool mouseIsDown = false;
+        bool connect = false;
         Color col = Color.Black;
         Point p = Point.Empty;
         
@@ -45,6 +46,11 @@ namespace CisLab6
                 graphics.DrawLine(pioro, p, e.Location);
                 p = e.Location;
                 pictureBox1.Refresh();
+
+                if(connect)
+                {
+                    //Byte[] sendBytes = Encoding.Convert(e.X);
+                }
             }
         }
 
@@ -72,16 +78,16 @@ namespace CisLab6
             udpClient = new UdpClient();
             try
             {
+
                 udpClient.Connect(host, port);
+                connect = true;
 
                 // Sends a message to the host to which you have connected.
                 Byte[] sendBytes = Encoding.ASCII.GetBytes("Is anybody there?");
 
                 udpClient.Send(sendBytes, sendBytes.Length);
 
-                // Sends a message to a different host using optional hostname and port parameters.
-                UdpClient udpClientB = new UdpClient();
-                udpClientB.Send(sendBytes, sendBytes.Length, host, port);
+                
 
                 //IPEndPoint object will allow us to read datagrams sent from any source.
                 IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -98,13 +104,14 @@ namespace CisLab6
                                             " on their port number " +
                                             RemoteIpEndPoint.Port.ToString());
 
-                udpClient.Close();
-                udpClientB.Close();
+               // udpClient.Close();
+                
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                connect = false;
             }
         }
 
@@ -127,6 +134,7 @@ namespace CisLab6
         private void button2_Click(object sender, EventArgs e)
         {
             udpClient.Close();
+            connect = false;
             textBox3.Text = "Disconnect";
         }
 

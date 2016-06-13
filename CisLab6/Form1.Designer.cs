@@ -83,7 +83,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(92, 20);
             this.textBox2.TabIndex = 4;
-            this.textBox2.Text = "9050";
+            this.textBox2.Text = "8080";
+            this.textBox2.TextChanged += new System.EventHandler(this.button2_Click);
             // 
             // textBox3
             // 
@@ -92,6 +93,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(114, 20);
             this.textBox3.TabIndex = 5;
+            this.textBox3.Text = "Disconnect";
             // 
             // button1
             // 
@@ -101,6 +103,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -110,6 +113,7 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "Disconnect";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
